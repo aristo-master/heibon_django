@@ -1,0 +1,11 @@
+{% extends "tag_samples/base.html" %}
+
+{% block title %}個別部分タイトル{% endblock %}
+
+{% block body %}
+
+{% include "tag_samples/parts.html" with name="ウズにゃん" age=99 hoby=hoby only %}
+
+
+
+{% endblock %}

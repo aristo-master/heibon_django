@@ -1,0 +1,160 @@
+{% extends "tag_samples/base.html" %}
+
+{% block title %}個別部分タイトル{% endblock %}
+
+{% block body %}
+
+<br>
+<div class="container">
+
+    {% if person_list %}
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <td>名前</td>
+            <td>年齢</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for person in person_list %}
+        <tr>
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    {% if person_list %}
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <td>forloop.counter</td>
+            <td>forloop.counter0</td>
+            <td>forloop.revcounter</td>
+            <td>forloop.revcounter0</td>
+            <td>forloop.first</td>
+            <td>forloop.last</td>
+            <td>名前</td>
+            <td>年齢</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for person in person_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ forloop.counter0 }}</td>
+            <td>{{ forloop.revcounter }}</td>
+            <td>{{ forloop.revcounter0 }}</td>
+            <td>{{ forloop.first }}</td>
+            <td>{{ forloop.last }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    {% if parent_list %}
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <td>親番号</td>
+            <td>名前</td>
+            <td>年齢</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for person_lists in parent_list %}
+        {% for person in person_list %}
+        <tr>
+            <td>{{ forloop.parentloop.counter }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+        </tr>
+        {% endfor %}
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <td>名前</td>
+            <td>年齢</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for empty in empty_list %}
+        <tr>
+            <td>{{ empty.name }}</td>
+            <td>{{ empty.age }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="2">表示対象がありません。</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if person_list %}
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <td>No</td>
+            <td>偶数 / 奇数</td>
+            <td>名前</td>
+            <td>年齢</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for person in person_list %}
+        <tr class="{% cycle 'odd' 'add' %}">
+            <td>{{ forloop.counter }}</td>
+            <td>{% cycle '奇数' '偶数' %}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    {% regroup cities by country as country_list %}
+    <table class="table table-striped table-bordered">
+        {% for country in country_list %}
+        <thead>
+        <tr>
+            <td colspan="2" class="bg-primary">{{ country.grouper }}</td>
+        </tr>
+        <tr class="bg-info">
+            <td>都市</td>
+            <td>人口</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for city in country.list %}
+        <tr>
+            <td>{{ city.name }}</td>
+            <td>{{ city.population }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        {% endfor %}
+    </table>
+
+{% with str="あいうえおかきくけこ" %}
+{% with length=str|length %}
+    ...
+    <p>strの文字数は{{length}}です。</p>
+    ...
+{% endwith %}
+{% endwith %}
+
+</div>
+
+{% endblock %}

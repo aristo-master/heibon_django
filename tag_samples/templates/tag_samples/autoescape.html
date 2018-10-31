@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>日本一平凡なサンプル</title>
+</head>
+<body>
+
+▼何もしなければ autoescape は on である。<br/>
+{{param}}です。
+
+<hr/>
+
+▼autoescape はデフォルトでonだが、デフォルトでoffにしている場合はこれでonに出来る。<br/>
+{% autoescape on %}
+    {{param}}
+{% endautoescape %}
+
+<hr/>
+
+▼autoescape を off にすることでクロスサイトスクリプティング発動。<br/>
+{% autoescape off %}
+    {{param}}
+{% endautoescape %}
+
+</body>
+</html>

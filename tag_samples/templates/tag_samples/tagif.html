@@ -1,0 +1,103 @@
+{% extends "tag_samples/base.html" %}
+
+{% block title %}個別部分タイトル{% endblock %}
+
+{% block body %}
+
+<br>
+<div class="container">
+
+    {% if person_list %}
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr class="bg-primary">
+            <td>部署</td>
+            <td>名前</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for person in person_list %}
+        <tr>
+            <td>
+                {% ifchanged person.department %}
+                    {{person.department}}
+                {% else %}
+                    -
+                {% endifchanged %}
+            </td>
+            <td>{{ person.name }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+{% lorem 2 w random %}
+
+<hr/>
+
+{% include "tag_samples/parts.html" with person="aaa" greeting="sss" only %}
+
+
+{% spaceless %}
+    <p>
+        <a href="foo/">Foo</a>
+    </p>
+{% endspaceless %}
+
+{% spaceless %}
+    <p>
+        <a href="foo/">
+            Foo
+        </a>
+    </p>
+{% endspaceless %}
+
+{% spaceless %}
+    <strong>
+        Hello
+    </strong>
+{% endspaceless %}
+
+<hr/>
+
+openblock:{% templatetag openblock %}
+closeblock:{% templatetag closeblock %}
+openvariable:{% templatetag openvariable %}
+closevariable:{% templatetag closevariable %}
+openbrace:{% templatetag openbrace %}
+closebrace:{% templatetag closebrace %}
+opencomment:{% templatetag opencomment %}
+closecomment:{% templatetag closecomment %}
+
+<hr/>
+
+{% verbatim %}
+<div>
+   <em>Name:</em> {{:name}}
+   {{if showNickname && nickname}}
+      (Goes by <em>{{:nickname}}</em>)
+   {{/if}}
+</div>
+{% endverbatim %}
+
+{% widthratio 88 200 100 %}
+<hr/>
+
+全体：<div style="height:20px;width:300px;background-color: #0000ff"></div>
+分類１：<div style="height:20px;width:{% widthratio 70 210 300 %}px;background-color: #dc143c"></div>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+</div>
+
+{% endblock %}

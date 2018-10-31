@@ -1,0 +1,18 @@
+{% extends "tag_samples/base.html" %}
+
+{% block title %}個別部分タイトル{% endblock %}
+
+{% block body %}
+
+<p>個別部分ボディ</p>
+
+・普通に表示する部分<br/>
+<p>{{ param }}</p>
+
+{% comment "コメントアウトの理由を書いておけます" %}
+この部分はコメントアウトされています。
+<p>{{ param }}</p>
+この部分はコメントアウトされています。
+{% endcomment %}
+
+{% endblock %}
